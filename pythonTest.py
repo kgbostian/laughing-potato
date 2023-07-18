@@ -1,40 +1,32 @@
-import tkinter as tk
+# Import the required libraries
+from tkinter import *
+from tkinter import ttk
 
-def startScript(event):
-    print("Start button clicked")
-    event.widget.pack_forget()
-    packRunFrame(runFrame)
-    
-def packRunFrame(runFrame):
-    runFrame.pack()
-    
-def stopScript(event):
-    print("Stop button clicked")
-    event.widget.pack_forget()
-    packStartFrame(startFrame);
-    
-def packStartFrame(startFrame):
-    startFrame.pack()
+# Create an instance of tkinter frame
+win = Tk()
 
-# def hide_me(event):
-#     event.widget.pack_forget()
+# Set the size of the tkinter window
+win.geometry("700x350")
 
-window = tk.Tk()
-startFrame = tk.Frame(window)
-startFrame.pack()
-runFrame = tk.Frame(window)
+# Define the style for combobox widget
+style = ttk.Style()
+style.theme_use('xpnative')
 
-greeting = tk.Label(text="Hello, Tkinter")
-greeting.pack()
+# Define a function to show/hide widget
+def show_widget():
+   label.pack()
+   b1.configure(text="Hide", command=hide_widget)
+   
+def hide_widget():
+   label.pack_forget()
+   b1.configure(text="Show", command=show_widget)
 
-# btn = tk.Button(startFrame, text="Click")
-# btn.bind('<Button-1>', hide_me)
-# btn.pack()
-buttonStop = tk.Button(runFrame, text='Stop', width=25)
-buttonStop.bind('<Button-1>', stopScript)
-buttonStop.pack()
+# Add a label widget
+label = ttk.Label(win, text="Eat, Sleep, Code and Repeat", font=('Aerial 11'))
+label.pack(pady=30)
 
-buttonStart = tk.Button(startFrame, text='Start', width=25)
-buttonStart.bind('<Button-1>', startScript)
-buttonStart.pack()
-window.mainloop()
+# Add a Button widget
+b1 = ttk.Button(win, text="Hide", command=hide_widget)
+b1.pack(pady=20)
+
+win.mainloop()
